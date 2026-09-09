@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中金院社團DM</title>
+    <title>中金院社團線上指南</title>
     
     <style>
-        /* 啟用平滑滾動功能 */
+        /* 1. 啟用平滑滾動功能 */
         html {
             scroll-behavior: smooth;
         }
@@ -19,56 +19,91 @@
             color: #333;
         }
 
-        /* 滿版歡迎畫面 */
-        .hero-section {
-            min-height: 100vh; /* 改用 min-height 確保按鈕變多時不會超出背景 */
+        /* 2. 第一層：首頁浮現動畫區塊 (莫蘭迪綠漸層) */
+        .intro-screen {
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #2c3e50, #3498db);
+            /* 換成優雅質感的莫蘭迪綠漸層 */
+            background: linear-gradient(135deg, #748c7e, #a8baa6); 
             color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 20px;
             box-sizing: border-box;
         }
 
-        .hero-section h1 {
-            font-size: 36px;
-            margin-bottom: 40px;
+        .intro-text {
+            font-size: 32px;
+            font-weight: bold;
             letter-spacing: 2px;
+            line-height: 1.5;
+            opacity: 0;
+            animation: floatUp 1.5s ease-out forwards;
         }
 
-        /* 10 個社團按鈕的排版，支援自動換行 */
+        .scroll-hint {
+            margin-top: 50px;
+            font-size: 14px;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 1.5s forwards; 
+        }
+
+        @keyframes floatUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* 3. 第二層：選單按鈕區塊 */
+        .menu-section {
+            padding: 80px 20px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .menu-section h2 {
+            color: #4a5f52; /* 深莫蘭迪綠 */
+            margin-bottom: 30px;
+        }
+
         .nav-buttons {
             display: flex;
             flex-wrap: wrap; 
             gap: 15px;
             justify-content: center;
-            max-width: 800px; /* 稍微放寬容器，讓 10 個按鈕排列更舒適 */
+            max-width: 800px;
         }
 
         .nav-buttons a {
             text-decoration: none;
-            color: white;
+            color: #5c7465; /* 按鈕文字顏色 */
             padding: 12px 25px;
             border-radius: 30px;
-            border: 2px solid white;
+            border: 2px solid #5c7465; /* 按鈕邊框顏色 */
             font-weight: bold;
             font-size: 16px;
             transition: all 0.3s ease;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: transparent;
         }
 
         .nav-buttons a:hover {
-            background-color: white;
-            color: #3498db;
+            background-color: #5c7465; /* 滑鼠懸停時填滿莫蘭迪綠 */
+            color: white;
         }
 
-        /* 滾動區塊設定 */
+        /* 4. 第三層：滾動區塊設定 */
         .club-section {
             padding: 100px 20px;
-            min-height: 60vh;
+            min-height: 50vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -76,9 +111,9 @@
             text-align: center;
         }
 
-        /* 相鄰區塊背景色交替 */
-        .club-section:nth-child(even) { background-color: #ffffff; }
-        .club-section:nth-child(odd) { background-color: #f2f7fa; }
+        /* 奇數與偶數背景色交替，使用極淺的莫蘭迪綠與純白 */
+        .club-section:nth-child(even) { background-color: #f2f5f3; }
+        .club-section:nth-child(odd) { background-color: #ffffff; }
 
         .club-content {
             max-width: 700px;
@@ -87,7 +122,7 @@
 
         .club-content h2 {
             font-size: 28px;
-            color: #2c3e50;
+            color: #4a5f52; /* 深莫蘭迪綠 */
             margin-bottom: 25px;
         }
 
@@ -98,11 +133,11 @@
             margin-bottom: 40px;
         }
 
-        /* IG 按鈕 */
-        .ig-btn {
+        /* 統一風格的行動按鈕 (IG/Line) */
+        .action-btn {
             display: inline-block;
             text-decoration: none;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            background-color: #5c7465; /* 莫蘭迪綠背景 */
             color: white;
             padding: 12px 30px;
             border-radius: 25px;
@@ -112,109 +147,122 @@
             transition: opacity 0.3s ease;
         }
 
-        .ig-btn:hover {
+        .action-btn:hover {
             opacity: 0.8;
+        }
+
+        /* 無連結時的公告文字標籤 */
+        .announcement-text {
+            display: inline-block;
+            background-color: #e3e8e5;
+            color: #5c7465;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            border: 1px dashed #a8baa6;
         }
     </style>
 </head>
 <body>
 
-    <!-- 歡迎與導覽列 (10 個按鈕) -->
-    <div class="hero-section">
-        <h1>歡迎來到中金院社團DM</h1>
-        
-        <div class="nav-buttons">
-            <a href="#club1">社團一</a>
-            <a href="#club2">社團二</a>
-            <a href="#club3">社團三</a>
-            <a href="#club4">社團四</a>
-            <a href="#club5">社團五</a>
-            <a href="#club6">社團六</a>
-            <a href="#club7">社團七</a>
-            <a href="#club8">社團八</a>
-            <a href="#club9">社團九</a>
-            <a href="#club10">社團十</a>
+    <!-- 第一層：充滿儀式感的歡迎畫面 -->
+    <div class="intro-screen">
+        <div class="intro-text">
+            這是<br>中信金融管理學院的<br>社團線上指南
+        </div>
+        <div class="scroll-hint">
+            ▼ 往下滑動探索社團 ▼
         </div>
     </div>
 
-    <!-- 區塊 1~10 -->
+    <!-- 第二層：集中放置的導覽按鈕區 (9個社團) -->
+    <div class="menu-section">
+        <h2>選擇你想了解的社團</h2>
+        <div class="nav-buttons">
+            <a href="#club1">吉他社</a>
+            <a href="#club2">熱舞社</a>
+            <a href="#club3">桌遊社</a>
+            <a href="#club4">蔬活玩意社</a>
+            <a href="#club5">棒球社</a>
+            <a href="#club6">匹克球社</a>
+            <a href="#club7">法律研究暨服務社</a>
+            <a href="#club8">撞球社</a>
+            <a href="#club9">高爾夫球社</a>
+        </div>
+    </div>
+
+    <!-- 第三層：個別社團區塊 1~9 -->
     <div id="club1" class="club-section">
         <div class="club-content">
-            <h2>社團名稱一</h2>
-            <p>（在此輸入第一家社團介紹文案）...</p>
-            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+            <h2>吉他社</h2>
+            <p>不管是想從零開始學吉他，還是已經會彈想找人一起玩團，都歡迎加入！用音樂認識朋友，也讓大學生活多一點旋律。</p>
+            <a href="https://www.instagram.com/ctbc_guitarclub?stkn=b2xsbG9nNG1vc3U=" target="_blank" class="action-btn">追蹤 IG</a>
         </div>
     </div>
 
     <div id="club2" class="club-section">
         <div class="club-content">
-            <h2>社團名稱二</h2>
-            <p>（在此輸入第二家社團介紹文案）...</p>
-            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+            <h2>熱舞社</h2>
+            <p>喜歡跳舞、想挑戰舞台，或只是想跟著音樂動起來，都可以來熱舞社！一起練舞、一起上台，把青春跳得更精彩。</p>
+            <a href="https://www.instagram.com/ctbc.dance.club?igsh=eDE0ZThnc3lraGk=" target="_blank" class="action-btn">追蹤 IG</a>
         </div>
     </div>
 
     <div id="club3" class="club-section">
         <div class="club-content">
-            <h2>社團名稱三</h2>
-            <p>（在此輸入第三家社團介紹文案）...</p>
-            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+            <h2>桌遊社</h2>
+            <p>從策略燒腦到輕鬆派對遊戲都有，無論新手還是桌遊老手都能找到同好。想交朋友、想動腦，來桌遊社就對了！</p>
+            <a href="https://www.instagram.com/ctbc_board.games.club?igsh=MmdvOTVwZjA3NGMy" target="_blank" class="action-btn">追蹤 IG</a>
         </div>
     </div>
 
     <div id="club4" class="club-section">
         <div class="club-content">
-            <h2>社團名稱四</h2>
-            <p>（在此輸入第四家社團介紹文案）...</p>
-            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+            <h2>蔬活玩意社</h2>
+            <p>不只蔬食，也不只中餐！從料理到烘焙，一起動手做出各種好吃又有趣的料理，享受從食材到成品的成就感。</p>
+            <a href="https://www.instagram.com/vefepme_ctbc?igsh=OWVvZW11ZzVlZDhp" target="_blank" class="action-btn">追蹤 IG</a>
         </div>
     </div>
 
     <div id="club5" class="club-section">
         <div class="club-content">
-            <h2>社團名稱五</h2>
-            <p>（在此輸入第五家社團介紹文案）...</p>
-            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+            <h2>棒球社</h2>
+            <p>有棒球底子的你，別讓球棒和手套在大學閒著！加入球隊一起訓練、一起征戰大專盃一般組，把熱血留在球場上。</p>
+            <a href="https://www.instagram.com/ctbc_baseball_club?igsh=cnpwdmF1OHozYmN6" target="_blank" class="action-btn">追蹤 IG</a>
         </div>
     </div>
 
     <div id="club6" class="club-section">
         <div class="club-content">
-            <h2>社團名稱六</h2>
-            <p>（在此輸入第六家社團介紹文案）...</p>
-            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+            <h2>匹克球社</h2>
+            <p>近年超熱門的新興運動，結合網球、羽球與桌球特色，簡單好上手又充滿競技感。想嘗試新運動，就來一起 Pickleball！</p>
+            <a href="https://www.instagram.com/ctbcbs_pickleballclub?igsh=d2J6ODd3YzZjeTNi&utm_source=qr" target="_blank" class="action-btn">追蹤 IG</a>
         </div>
     </div>
 
     <div id="club7" class="club-section">
         <div class="club-content">
-            <h2>社團名稱七</h2>
-            <p>（在此輸入第七家社團介紹文案）...</p>
-            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+            <h2>法律研究暨服務社</h2>
+            <p>法律迷的交流基地！一起討論生活中的法律議題、熱門案件與實務個案，和同樣對法律有興趣的人交換不同觀點。</p>
+            <a href="https://www.instagram.com/lsrs_ctbc?igsh=eG1vNmI1d3I5a2N3&utm_source=qr" target="_blank" class="action-btn">追蹤 IG</a>
         </div>
     </div>
 
     <div id="club8" class="club-section">
         <div class="club-content">
-            <h2>社團名稱八</h2>
-            <p>（在此輸入第八家社團介紹文案）...</p>
-            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+            <h2>撞球社</h2>
+            <p>從瞄準、出桿到走位，每一球都是技巧與策略的較量。無論是休閒玩家還是想精進球技，都歡迎一起來切磋！</p>
+            <a href="https://line.me/ti/g/d62dJpaGJ2" target="_blank" class="action-btn">加入 Line 群組</a>
         </div>
     </div>
 
     <div id="club9" class="club-section">
         <div class="club-content">
-            <h2>社團名稱九</h2>
-            <p>（在此輸入第九家社團介紹文案）...</p>
-            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
-        </div>
-    </div>
-
-    <div id="club10" class="club-section">
-        <div class="club-content">
-            <h2>社團名稱十</h2>
-            <p>（在此輸入第十家社團介紹文案）...</p>
-            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+            <h2>高爾夫球社</h2>
+            <p>想找一項能讓自己靜下來的運動嗎？高爾夫講究的不只是技巧，更是耐心、專注與節奏，一起在揮桿中享受沉著與成就感。</p>
+            <!-- 這裡使用了專為公告設計的樣式，取代按鈕 -->
+            <span class="announcement-text">詳細課程資訊將於新生大群公告</span>
         </div>
     </div>
 
