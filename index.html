@@ -19,14 +19,13 @@
             color: #333;
         }
 
-        /* 2. 第一層：首頁浮現動畫區塊 (莫蘭迪綠漸層) */
+        /* 2. 第一層：首頁浮現動畫區塊 */
         .intro-screen {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* 換成優雅質感的莫蘭迪綠漸層 */
             background: linear-gradient(135deg, #748c7e, #a8baa6); 
             color: white;
             text-align: center;
@@ -35,23 +34,25 @@
         }
 
         .intro-text {
-            font-size: 32px;
+            /* 使用 clamp(最小值, 推薦值, 最大值) 讓字體動態縮放，帶來震撼的視覺效果 */
+            font-size: clamp(36px, 6vw, 64px);
             font-weight: bold;
-            letter-spacing: 2px;
-            line-height: 1.5;
+            letter-spacing: 4px; /* 加大字距，讓大字體更有質感 */
+            line-height: 1.6;
             opacity: 0;
             animation: floatUp 1.5s ease-out forwards;
         }
 
         .scroll-hint {
-            margin-top: 50px;
-            font-size: 14px;
+            margin-top: 60px;
+            font-size: 18px; /* 提示文字也一併放大 */
+            letter-spacing: 2px;
             opacity: 0;
             animation: fadeIn 2s ease-out 1.5s forwards; 
         }
 
         @keyframes floatUp {
-            0% { opacity: 0; transform: translateY(40px); }
+            0% { opacity: 0; transform: translateY(50px); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
@@ -62,7 +63,7 @@
 
         /* 3. 第二層：選單按鈕區塊 */
         .menu-section {
-            padding: 80px 20px;
+            padding: 100px 20px; /* 增加上下留白，讓畫面呼吸 */
             background-color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -71,38 +72,41 @@
         }
 
         .menu-section h2 {
-            color: #4a5f52; /* 深莫蘭迪綠 */
-            margin-bottom: 30px;
+            color: #4a5f52;
+            font-size: 32px; /* 放大區域標題 */
+            margin-bottom: 40px;
+            letter-spacing: 1.5px;
         }
 
         .nav-buttons {
             display: flex;
             flex-wrap: wrap; 
-            gap: 15px;
+            gap: 20px; /* 拉大按鈕之間的距離 */
             justify-content: center;
-            max-width: 800px;
+            max-width: 900px;
         }
 
         .nav-buttons a {
             text-decoration: none;
-            color: #5c7465; /* 按鈕文字顏色 */
-            padding: 12px 25px;
-            border-radius: 30px;
-            border: 2px solid #5c7465; /* 按鈕邊框顏色 */
+            color: #5c7465; 
+            padding: 15px 35px; /* 增加按鈕內部的空間，讓按鈕變大 */
+            border-radius: 40px;
+            border: 2px solid #5c7465; 
             font-weight: bold;
-            font-size: 16px;
+            font-size: 20px; /* 放大按鈕文字 */
             transition: all 0.3s ease;
             background-color: transparent;
         }
 
         .nav-buttons a:hover {
-            background-color: #5c7465; /* 滑鼠懸停時填滿莫蘭迪綠 */
+            background-color: #5c7465; 
             color: white;
+            transform: scale(1.05); /* 加入滑鼠游標移過去微放大的效果 */
         }
 
         /* 4. 第三層：滾動區塊設定 */
         .club-section {
-            padding: 100px 20px;
+            padding: 120px 20px; /* 加大區塊間距 */
             min-height: 50vh;
             display: flex;
             flex-direction: column;
@@ -111,44 +115,45 @@
             text-align: center;
         }
 
-        /* 奇數與偶數背景色交替，使用極淺的莫蘭迪綠與純白 */
         .club-section:nth-child(even) { background-color: #f2f5f3; }
         .club-section:nth-child(odd) { background-color: #ffffff; }
 
         .club-content {
-            max-width: 700px;
+            max-width: 800px; /* 配合大字體，稍微放寬文字容器 */
             width: 100%;
         }
 
         .club-content h2 {
-            font-size: 28px;
-            color: #4a5f52; /* 深莫蘭迪綠 */
-            margin-bottom: 25px;
+            font-size: 36px; /* 放大社團名稱 */
+            color: #4a5f52; 
+            margin-bottom: 30px;
+            letter-spacing: 2px;
         }
 
         .club-content p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 40px;
+            font-size: 18px; /* 放大介紹內文，閱讀更輕鬆 */
+            line-height: 2; /* 行距配合字體放大 */
+            color: #444; /* 字體顏色微調深一點，增加對比度 */
+            margin-bottom: 50px;
         }
 
         /* 統一風格的行動按鈕 (IG/Line) */
         .action-btn {
             display: inline-block;
             text-decoration: none;
-            background-color: #5c7465; /* 莫蘭迪綠背景 */
+            background-color: #5c7465; 
             color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
+            padding: 15px 40px; /* 放大行動按鈕 */
+            border-radius: 35px;
             font-weight: bold;
-            font-size: 16px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: opacity 0.3s ease;
+            font-size: 18px; /* 放大按鈕文字 */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* 加深一點陰影 */
+            transition: all 0.3s ease;
         }
 
         .action-btn:hover {
-            opacity: 0.8;
+            opacity: 0.85;
+            transform: translateY(-3px); /* 滑鼠懸停時按鈕會微微浮起 */
         }
 
         /* 無連結時的公告文字標籤 */
@@ -156,11 +161,11 @@
             display: inline-block;
             background-color: #e3e8e5;
             color: #5c7465;
-            padding: 12px 25px;
-            border-radius: 8px;
+            padding: 15px 30px;
+            border-radius: 10px;
             font-weight: bold;
-            font-size: 15px;
-            border: 1px dashed #a8baa6;
+            font-size: 18px; /* 放大公告文字 */
+            border: 2px dashed #a8baa6;
         }
     </style>
 </head>
@@ -176,7 +181,7 @@
         </div>
     </div>
 
-    <!-- 第二層：集中放置的導覽按鈕區 (9個社團) -->
+    <!-- 第二層：集中放置的導覽按鈕區 -->
     <div class="menu-section">
         <h2>選擇你想了解的社團</h2>
         <div class="nav-buttons">
@@ -261,7 +266,6 @@
         <div class="club-content">
             <h2>高爾夫球社</h2>
             <p>想找一項能讓自己靜下來的運動嗎？高爾夫講究的不只是技巧，更是耐心、專注與節奏，一起在揮桿中享受沉著與成就感。</p>
-            <!-- 這裡使用了專為公告設計的樣式，取代按鈕 -->
             <span class="announcement-text">詳細課程資訊將於新生大群公告</span>
         </div>
     </div>
