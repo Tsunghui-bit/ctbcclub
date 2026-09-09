@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中金院社團線上指南</title>
+    
+    <style>
+        /* 1. 啟用平滑滾動功能 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* 2. 第一層：首頁浮現動畫區塊 (滿版螢幕) */
+        .intro-screen {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* 換一個更具學術與質感的漸層藍色 */
+            background: linear-gradient(135deg, #1a2a6c, #11998e); 
+            color: white;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .intro-text {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            line-height: 1.5;
+            /* 預設為透明，並套用我們自訂的 floatUp 動畫 */
+            opacity: 0;
+            animation: floatUp 1.5s ease-out forwards;
+        }
+
+        .scroll-hint {
+            margin-top: 50px;
+            font-size: 14px;
+            opacity: 0;
+            /* 延遲 1.5 秒後才緩慢出現，指引使用者下滑 */
+            animation: fadeIn 2s ease-out 1.5s forwards; 
+        }
+
+        /* 定義動畫的細節 */
+        @keyframes floatUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* 3. 第二層：選單按鈕區塊 */
+        .menu-section {
+            padding: 80px 20px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* 增加一點立體陰影 */
+        }
+
+        .menu-section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 15px;
+            justify-content: center;
+            max-width: 800px;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            color: #3498db;
+            padding: 12px 25px;
+            border-radius: 30px;
+            border: 2px solid #3498db;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: transparent;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        /* 4. 第三層：滾動區塊設定 (社團詳細介紹) */
+        .club-section {
+            padding: 100px 20px;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .club-section:nth-child(even) { background-color: #f2f7fa; }
+        .club-section:nth-child(odd) { background-color: #ffffff; }
+
+        .club-content {
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .club-content h2 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+
+        .club-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .ig-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: opacity 0.3s ease;
+        }
+
+        .ig-btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 第一層：充滿儀式感的歡迎畫面 -->
+    <div class="intro-screen">
+        <div class="intro-text">
+            這是<br>中信金融管理學院的<br>社團線上指南
+        </div>
+        <div class="scroll-hint">
+            ▼ 往下滑動探索社團 ▼
+        </div>
+    </div>
+
+    <!-- 第二層：集中放置的導覽按鈕區 -->
+    <div class="menu-section">
+        <h2>選擇你想了解的社團</h2>
+        <div class="nav-buttons">
+            <a href="#club1">社團一</a>
+            <a href="#club2">社團二</a>
+            <a href="#club3">社團三</a>
+            <a href="#club4">社團四</a>
+            <a href="#club5">社團五</a>
+            <a href="#club6">社團六</a>
+            <a href="#club7">社團七</a>
+            <a href="#club8">社團八</a>
+            <a href="#club9">社團九</a>
+            <a href="#club10">社團十</a>
+        </div>
+    </div>
+
+    <!-- 第三層：個別社團區塊 1~10 -->
+    <div id="club1" class="club-section">
+        <div class="club-content">
+            <h2>社團名稱一</h2>
+            <p>（在此輸入第一家社團介紹文案）...</p>
+            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+        </div>
+    </div>
+
+    <div id="club2" class="club-section">
+        <div class="club-content">
+            <h2>社團名稱二</h2>
+            <p>（在此輸入第二家社團介紹文案）...</p>
+            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+        </div>
+    </div>
+
+    <div id="club3" class="club-section">
+        <div class="club-content">
+            <h2>社團名稱三</h2>
+            <p>（在此輸入第三家社團介紹文案）...</p>
+            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+        </div>
+    </div>
+
+    <div id="club4" class="club-section">
+        <div class="club-content">
+            <h2>社團名稱四</h2>
+            <p>（在此輸入第四家社團介紹文案）...</p>
+            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+        </div>
+    </div>
+
+    <div id="club5" class="club-section">
+        <div class="club-content">
+            <h2>社團名稱五</h2>
+            <p>（在此輸入第五家社團介紹文案）...</p>
+            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+        </div>
+    </div>
+
+    <div id="club6" class="club-section">
+        <div class="club-content">
+            <h2>社團名稱六</h2>
+            <p>（在此輸入第六家社團介紹文案）...</p>
+            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+        </div>
+    </div>
+
+    <div id="club7" class="club-section">
+        <div class="club-content">
+            <h2>社團名稱七</h2>
+            <p>（在此輸入第七家社團介紹文案）...</p>
+            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+        </div>
+    </div>
+
+    <div id="club8" class="club-section">
+        <div class="club-content">
+            <h2>社團名稱八</h2>
+            <p>（在此輸入第八家社團介紹文案）...</p>
+            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+        </div>
+    </div>
+
+    <div id="club9" class="club-section">
+        <div class="club-content">
+            <h2>社團名稱九</h2>
+            <p>（在此輸入第九家社團介紹文案）...</p>
+            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+        </div>
+    </div>
+
+    <div id="club10" class="club-section">
+        <div class="club-content">
+            <h2>社團名稱十</h2>
+            <p>（在此輸入第十家社團介紹文案）...</p>
+            <a href="https://instagram.com/" target="_blank" class="ig-btn">追蹤 IG</a>
+        </div>
+    </div>
+
+</body>
+</html>
