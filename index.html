@@ -11,69 +11,22 @@
 
         :root {
             --primary-green: #678678; 
-            --dark-green: #2c4436; 
             --dark-text: #333333;
-            --bg-color: #E3ECF3; /* 質感冷灰背景 */
+            --light-bg: #f5f6f5;
         }
 
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
             margin: 0; padding: 0;
-            background-color: var(--bg-color);
+            background-color: var(--light-bg);
             color: var(--dark-text);
             overflow-x: hidden;
         }
 
-        /* --- 1. 滿版滾動式首頁 (Hero Section) --- */
-        .hero-section {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('hero-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-            image-rendering: crisp-edges; /* 優化背景圖片的渲染品質 */
-        }
-        .hero-title {
-            font-size: clamp(48px, 8vw, 80px);
-            font-weight: 700;
-            letter-spacing: 6px;
-            margin: 0 0 15px 0;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .hero-subtitle {
-            font-size: clamp(18px, 3vw, 24px);
-            font-weight: 400;
-            letter-spacing: 3px;
-            margin: 0;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            word-break: keep-all; 
-        }
-        .scroll-down {
-            position: absolute;
-            bottom: 40px;
-            font-size: 14px;
-            letter-spacing: 3px;
-            animation: bounce 2s infinite;
-            opacity: 0.9;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        /* --- 2. 黏性導覽列 --- */
+        /* --- 1. 頂部導覽列 --- */
         .navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background-color: #ffffff;
             padding: 15px 40px;
             display: flex;
             justify-content: space-between;
@@ -84,74 +37,122 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-weight: 700;
-            color: var(--dark-green);
+            color: #2c4436;
         }
         .nav-links a {
             text-decoration: none;
             color: var(--dark-text);
             margin-left: 30px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             transition: color 0.3s;
         }
         .nav-links a:hover { color: var(--primary-green); }
 
-        /* --- 3. 社團方格卡片區塊 --- */
-        .clubs-section {
-            padding: 80px 5%;
-            background-color: var(--bg-color); 
+        /* --- 2. 首頁 Hero Section (雙欄設計) --- */
+        .hero {
+            display: flex;
+            min-height: 85vh;
+            background-color: #ffffff;
         }
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
+        .hero-left {
+            flex: 1;
+            padding: 10% 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        .section-header h2 {
+        .handwriting {
+            font-family: 'Caveat', cursive;
             font-size: 36px;
-            color: var(--dark-green);
-            margin: 0 0 10px 0;
+            color: #889988;
+            margin-bottom: 5px;
+        }
+        .hero-title {
+            font-size: 56px;
+            font-weight: 700;
+            color: #2c4436;
+            margin: 0 0 20px 0;
             letter-spacing: 2px;
         }
-        .section-header p {
+        .hero-subtitle {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 40px;
+            word-break: keep-all; /* 防止中文單字被不自然地斷行 */
+        }
+        .hero-desc {
+            font-size: 15px;
+            line-height: 1.8;
             color: #666;
+        }
+        .hero-right {
+            flex: 1;
+            background-image: url('hero-bg.jpg'); /* 保持你的照片載入 */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-right-text {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            color: white;
+            text-align: right;
+            font-family: 'Caveat', cursive;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        /* --- 3. 社團介紹區塊 --- */
+        .clubs-section {
+            padding: 80px 5%;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 50px;
+        }
+        .section-title h2 {
+            font-size: 32px;
+            color: #2c4436;
             margin: 0;
-            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
         
         .club-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
+            gap: 30px;
         }
 
-        /* 單張方格卡片設計 */
         .club-card {
             background-color: #ffffff;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none; /* 移除超連結底線 */
+            text-decoration: none;
             color: var(--dark-text);
             display: flex;
             flex-direction: column;
         }
-        
-        /* 針對有連結的卡片增加滑鼠手勢 */
-        a.club-card { cursor: pointer; }
-        
         .club-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
         .card-img {
             height: 180px;
-            background-color: #e0e5e3; 
+            background-color: #e0e5e3;
             background-size: cover;
             background-position: center;
-            image-rendering: crisp-edges; /* 優化照片清晰度 */
         }
         .card-content {
             padding: 24px;
@@ -159,58 +160,15 @@
             display: flex;
             flex-direction: column;
         }
-        .card-content h3 {
-            margin: 0 0 10px 0;
-            font-size: 20px;
-            color: var(--dark-green);
-        }
-        .card-content p {
-            margin: 0 0 20px 0;
-            font-size: 14px;
-            line-height: 1.8;
-            color: #555;
-            flex-grow: 1;
-        }
-        
-        /* --- 升級版：卡片底部資訊列 --- */
-        .card-footer {
-            display: flex;
-            justify-content: space-between; /* 讓文字靠左，箭頭靠右 */
-            align-items: center;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #f2f2f2; /* 加上淡淡的分隔線增加質感 */
-        }
-        .action-text {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--primary-green);
-        }
-        .announcement {
-            font-size: 13px;
-            font-weight: 500;
-            color: #888; /* 公告文字使用低調的灰色 */
-        }
+        .card-content h3 { margin: 0 0 10px 0; font-size: 20px; color: #2c4436; }
+        .card-content p { margin: 0 0 20px 0; font-size: 14px; line-height: 1.6; color: #666; flex-grow: 1; }
+        .card-footer { display: flex; justify-content: flex-end; }
         .arrow-btn {
-            width: 32px; height: 32px;
-            border: 1px solid #ccc;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #666;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.3s ease;
+            width: 32px; height: 32px; border: 1px solid #ccc; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            color: #666; font-size: 14px; transition: all 0.2s ease;
         }
-        
-        /* 滑鼠懸停時，箭頭變色並向右上微移，增強 45 度角的動態感 */
-        a.club-card:hover .arrow-btn {
-            background-color: var(--primary-green);
-            color: white;
-            border-color: var(--primary-green);
-            transform: translate(2px, -2px);
-        }
+        .club-card:hover .arrow-btn { background-color: var(--primary-green); color: white; border-color: var(--primary-green); }
 
         /* --- 4. 底部形象橫幅與 Footer --- */
         .bottom-banner {
@@ -224,13 +182,23 @@
         .banner-text h2 {
             font-size: 42px;
             margin: 0 0 15px 0;
-            font-weight: 900;
+            font-weight: 900; /* 設定為粗體 */
             letter-spacing: 2px;
             line-height: 1.3;
         }
-        .banner-text p { margin: 0; font-size: 14px; letter-spacing: 3px; opacity: 0.8; }
-        .banner-words { text-align: right; font-size: 14px; line-height: 2; letter-spacing: 2px; opacity: 0.9; }
-        
+        .banner-text p {
+            margin: 0;
+            font-size: 14px;
+            letter-spacing: 3px;
+            opacity: 0.8;
+        }
+        .banner-words {
+            text-align: right;
+            font-size: 14px;
+            line-height: 2;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
         .footer {
             background-color: #ffffff;
             padding: 30px 40px;
@@ -241,294 +209,258 @@
             color: #888;
         }
 
-        /* 手機版適應 */
+        /* ========================================= */
+        /* --- 響應式設計：專為手機與平板配置的排版 --- */
+        /* ========================================= */
         @media (max-width: 768px) {
+            /* 縮小導覽列內距 */
             .navbar { padding: 15px 20px; }
-            .nav-links { display: none; }
+            .nav-links { display: none; } /* 手機版隱藏右側導覽文字，保持畫面乾淨 */
+
+            /* 首頁改為上下排列，並微調字體與間距 */
             .hero { flex-direction: column; min-height: auto; }
+            .hero-left { padding: 50px 20px; }
             .hero-title { font-size: 42px; }
-            .bottom-banner { flex-direction: column; align-items: flex-start; text-align: left; gap: 40px; padding: 50px 20px; }
-            .banner-words { text-align: left; }
-            .banner-text h2 { font-size: 32px; }
-            .footer { flex-direction: column; align-items: flex-start; gap: 15px; padding: 30px 20px; }
+            
+            /* 右側照片給予固定高度，並縮小英文字體避免被裁切 */
+            .hero-right { min-height: 350px; }
+            .hero-right-text { bottom: 20px; right: 20px; font-size: 18px; }
+
+            /* 底部橫幅改為上下排列，並強制靠左對齊 */
+            .bottom-banner { 
+                flex-direction: column; 
+                align-items: flex-start; /* 讓內容靠左對齊 */
+                text-align: left; /* 讓文字靠左對齊 */
+                gap: 40px; 
+                padding: 50px 20px; 
+            }
+            .banner-words { text-align: left; } /* 英文區塊也同步靠左 */
+            .banner-text h2 { font-size: 32px; } /* 手機版標題稍微縮小 */
+
+            /* 頁尾改為上下排列靠左對齊 */
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. 滿版滾動式首頁 -->
-    <header class="hero-section">
-        <h1 class="hero-title">社團懶人包</h1>
-        <p class="hero-subtitle">在中信金融管理學院，找到不一樣的自己。</p>
-        <div class="scroll-down">▼ 往下滑動探索社團 ▼</div>
-    </header>
-
-    <!-- 2. 黏性導覽列 -->
-    <nav class="navbar" id="club-list">
+    <!-- 1. 導覽列 -->
+    <nav class="navbar">
         <div class="logo-area">
             中信金融管理學院<br><span style="font-size: 10px; font-weight:400;">CTBC BUSINESS SCHOOL</span>
         </div>
         <div class="nav-links">
-            <a href="#club-list">社團介紹</a>
+            <a href="#">社團介紹</a>
+            <a href="#">活動資訊</a>
+            <a href="#">新生指南</a>
+            <a href="#">聯絡我們</a>
         </div>
     </nav>
 
-    <!-- 3. 社團方格卡片區塊 -->
+    <!-- 2. 首頁區塊 -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="handwriting">More Than A Classroom.</div>
+            <h1 class="hero-title">社團懶人包</h1>
+            <div class="hero-subtitle">在中信金管，找到不一樣的自己。</div>
+            <div class="hero-desc">
+                從興趣出發，遇見志同道合的夥伴，<br>讓大學生活不只讀書，更精彩！
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-right-text">
+                PEOPLE<br>PASSION<br>POSSIBILITIES
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 社團網格卡片區塊 -->
     <section class="clubs-section">
         <div class="section-header">
-            <h2>社團介紹</h2>
-            <p>從興趣出發，遇見志同道合的夥伴，讓大學生活不只讀書，更精彩！</p>
+            <div class="section-title">
+                <h2>社團介紹</h2>
+            </div>
+            <div class="handwriting" style="font-size: 28px;">Same School<br>Different Stories</div>
         </div>
 
         <div class="club-grid">
             
-            <!-- 吉他社 -->
             <a href="https://www.instagram.com/ctbc_guitarclub?stkn=b2xsbG9nNG1vc3U=" target="_blank" class="club-card">
-                <div class="card-img" style="background-image: url('placeholder.jpg');"></div>
+                <div class="card-img"></div>
                 <div class="card-content">
                     <h3>吉他社</h3>
-                    <p>不管是想從零開始學吉他，還是已經會彈想找人一起玩團，都歡迎加入！用音樂認識朋友，也讓大學生活多一點旋律。</p>
-                    <div class="card-footer">
-                        <span class="action-text">追蹤 IG</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>不管是想從零開始學吉他，還是已經會彈想找人一起玩團，都歡迎加入！</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
             </a>
 
-            <!-- 熱舞社 -->
             <a href="https://www.instagram.com/ctbc.dance.club?igsh=eDE0ZThnc3lraGk=" target="_blank" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>熱舞社</h3>
-                    <p>喜歡跳舞、想挑戰舞台，或只是想跟著音樂動起來，都可以來熱舞社！一起練舞、一起上台，把青春跳得更精彩。</p>
-                    <div class="card-footer">
-                        <span class="action-text">追蹤 IG</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>喜歡跳舞、想挑戰舞台，或只是想跟著音樂動起來，都可以來熱舞社！</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
             </a>
 
-            <!-- 桌遊社 -->
             <a href="https://www.instagram.com/ctbc_board.games.club?igsh=MmdvOTVwZjA3NGMy" target="_blank" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>桌遊社</h3>
-                    <p>從策略燒腦到輕鬆派對遊戲都有，無論新手還是桌遊老手都能找到同好。想交朋友、想動腦，來桌遊社就對了！</p>
-                    <div class="card-footer">
-                        <span class="action-text">追蹤 IG</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>從策略燒腦到輕鬆派對遊戲都有，無論新手還是桌遊老手都能找到同好。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
             </a>
 
-            <!-- 棒球社 -->
             <a href="https://www.instagram.com/ctbc_baseball_club?igsh=cnpwdmF1OHozYmN6" target="_blank" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>棒球社</h3>
-                    <p>有棒球底子的你，別讓球棒和手套在大學閒著！加入球隊一起訓練、一起征戰大專盃一般組，把熱血留在球場上。</p>
-                    <div class="card-footer">
-                        <span class="action-text">追蹤 IG</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>有棒球底子的你，別讓球棒和手套在大學閒著！加入球隊一起訓練、征戰大專盃。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
             </a>
 
-            <!-- 撞球社 -->
             <a href="https://line.me/ti/g/d62dJpaGJ2" target="_blank" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>撞球社</h3>
-                    <p>從瞄準、出桿到走位，每一球都是技巧與策略的較量。無論是休閒玩家還是想精進球技，都歡迎一起來切磋！</p>
-                    <div class="card-footer">
-                        <span class="action-text">加入 Line 群組</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>從瞄準、出桿到走位，每一球都是技巧與策略的較量。歡迎休閒玩家與高手切磋！</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
             </a>
 
-            <!-- 匹克球社 -->
             <a href="https://www.instagram.com/ctbcbs_pickleballclub?igsh=d2J6ODd3YzZjeTNi&utm_source=qr" target="_blank" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>匹克球社</h3>
-                    <p>近年超熱門的新興運動，結合網球、羽球與桌球特色，簡單好上手又充滿競技感。想嘗試新運動，就來一起 Pickleball！</p>
-                    <div class="card-footer">
-                        <span class="action-text">追蹤 IG</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>近年超熱門的新興運動，結合網球、羽球與桌球特色，簡單好上手又充滿競技感。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
             </a>
 
-            <!-- 蔬活玩意社 -->
             <a href="https://www.instagram.com/vefepme_ctbc?igsh=OWVvZW11ZzVlZDhp" target="_blank" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>蔬活玩意社</h3>
-                    <p>不只蔬食，也不只中餐！從料理到烘焙，一起動手做出各種好吃又有趣的料理，享受從食材到成品的成就感。</p>
-                    <div class="card-footer">
-                        <span class="action-text">追蹤 IG</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>不只蔬食，也不只中餐！從料理到烘焙，一起動手做料理，享受成就感。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
             </a>
 
-            <!-- 高爾夫球社 (無連結，使用 div) -->
-            <div class="club-card">
+            <a href="#" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>高爾夫球社</h3>
-                    <p>想找一項能讓自己靜下來的運動嗎？高爾夫講究的不只是技巧，更是耐心、專注與節奏。</p>
-                    <div class="card-footer">
-                        <span class="announcement">詳細課程資訊將於新生大群公告</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>講究的不只是技巧，更是耐心、專注與節奏，享受沉著與成就感。詳細資訊請洽：社長 財金系蘇俊彥。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
-            </div>
+            </a>
 
-            <!-- 法律研究暨服務社 -->
             <a href="https://www.instagram.com/lsrs_ctbc?igsh=eG1vNmI1d3I5a2N3&utm_source=qr" target="_blank" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>法律研究暨服務社</h3>
-                    <p>法律迷的交流基地！一起討論生活中的法律議題、熱門案件與實務個案，和同樣對法律有興趣的人交換不同觀點。</p>
-                    <div class="card-footer">
-                        <span class="action-text">追蹤 IG</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>法律迷的交流基地！一起討論生活中的法律議題、熱門案件與實務個案。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
             </a>
 
-            <!-- 親善大使暨表演社 (無連結，使用 div) -->
-            <div class="club-card">
+            <a href="#" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>親善大使暨表演社</h3>
-                    <p>大型活動中最亮眼的門面之一！也會安排美姿美儀、儀態訓練與妝法教學。</p>
-                    <div class="card-footer">
-                        <span class="announcement">詳細資訊請洽：社長 財金系陳淨璃</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>大型活動中最亮眼的門面！安排美姿美儀與妝法教學，培養自信。詳細資訊請洽社長 陳淨璃。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
-            </div>
+            </a>
 
-            <!-- 攝影社 (無連結，使用 div) -->
-            <div class="club-card">
+            <a href="#" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>攝影社</h3>
-                    <p>以運動賽事拍攝為主，現場還有圖資長親自指導拍攝技巧與實務經驗！</p>
-                    <div class="card-footer">
-                        <span class="announcement">詳細資訊請洽：圖資處 蔡芝穎圖資長</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>以運動賽事拍攝為主，圖資長親自指導拍攝技巧，適合想邊看比賽、邊練攝影的你！</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
-            </div>
+            </a>
 
-            <!-- 運動傷害防護與體能訓練社 -->
             <a href="https://www.instagram.com/ctbc_scat_team?stkn=eG1vM3Z3NmN0emhq" target="_blank" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>運動傷害防護與體能訓練社</h3>
-                    <p>從運動防護、體能訓練到基礎觀念，一起更科學地認識身體與運動表現，適合喜歡運動與健康相關知識的你。</p>
-                    <div class="card-footer">
-                        <span class="action-text">追蹤 IG</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>從運動防護、體能訓練到基礎觀念，一起更科學地認識身體與運動表現。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
             </a>
 
-            <!-- 羽球社 (無連結，使用 div) -->
-            <div class="club-card">
+            <a href="#" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>羽球社</h3>
-                    <p>想找球友、動一動，或是單純喜歡羽球都歡迎加入！一起揮拍、交流球技。</p>
-                    <div class="card-footer">
-                        <span class="announcement">詳細資訊請洽：企管系 羅宇晴</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>想找球友、動一動，或是單純喜歡羽球都歡迎加入！一起揮拍、交流球技。詳細資訊請洽：企管系羅宇晴。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
-            </div>
+            </a>
 
-            <!-- 男子籃球隊一般組 -->
             <a href="https://www.instagram.com/ctbcbs_basketball?stkn=dDN2OWx5cjF1aWtt" target="_blank" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>男子籃球隊一般組</h3>
-                    <p>有籃球底子的你，歡迎一起加入球隊訓練、挑戰大專盃，讓你的名字留在大專盃獎狀上！</p>
-                    <div class="card-footer">
-                        <span class="action-text">追蹤 IG</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>有籃球底子的你，歡迎一起加入球隊訓練、挑戰大專盃，將名字留在大專盃獎狀上！</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
             </a>
 
-            <!-- 女子排球隊 -->
             <a href="https://www.instagram.com/ctbc_volleyball_?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>女子排球隊</h3>
-                    <p>喜歡排球、享受團隊合作與場上對抗的快感。隊內也有校隊成員一起訓練，歡迎加入提升球技或累積比賽經驗。</p>
-                    <div class="card-footer">
-                        <span class="action-text">追蹤 IG</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>喜歡排球、享受團隊合作與場上對抗的快感，在每一次攻防中累積默契與經驗。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
             </a>
 
-            <!-- 木球社 (無連結，使用 div) -->
-            <div class="club-card">
+            <a href="#" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>木球社</h3>
-                    <p>想嘗試不一樣的球類運動嗎？木球結合技巧、穩定與策略，節奏不快卻很考驗精準度。</p>
-                    <div class="card-footer">
-                        <span class="announcement">詳細資訊請洽：社長 金管系何予又</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>想嘗試不一樣的球類運動嗎？木球結合技巧、穩定與策略，考驗精準度。詳細資訊請洽：金管系何予又。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
-            </div>
+            </a>
 
-            <!-- 女子足球隊 -->
             <a href="https://www.instagram.com/ctbc_football?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>女子足球隊</h3>
-                    <p>速度、跑動與團隊配合的足球活動，加入我們女子足球隊吧！一起在球場上享受攻守轉換與並肩作戰的熱血。</p>
-                    <div class="card-footer">
-                        <span class="action-text">追蹤 IG</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>速度、跑動與團隊配合的足球活動，一起在球場上享受攻守轉換與並肩作戰的熱血。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
             </a>
 
-            <!-- 跆拳道隊 -->
             <a href="https://www.instagram.com/ctbcbs.tkd?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>跆拳道隊</h3>
-                    <p>從基本動作、體能到實戰訓練，跆拳道不只鍛鍊身體，也訓練反應、專注與意志力，歡迎一起挑戰自己。</p>
-                    <div class="card-footer">
-                        <span class="action-text">追蹤 IG</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>從基本動作、體能到實戰訓練，不只鍛鍊身體，也訓練反應、專注與意志力。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
             </a>
 
-            <!-- 愛樂社 (無連結，使用 div) -->
-            <div class="club-card">
+            <a href="#" class="club-card">
                 <div class="card-img"></div>
                 <div class="card-content">
                     <h3>愛樂社</h3>
-                    <p>喜歡管弦樂器與合奏的你，歡迎一起加入中信樂團！也有機會在開學音樂會等場合登台演奏。</p>
-                    <div class="card-footer">
-                        <span class="announcement">詳細資訊請洽：黃渝臻系秘</span>
-                        <div class="arrow-btn">↗</div>
-                    </div>
+                    <p>喜歡管弦樂器與合奏的你，歡迎加入！有機會在開學音樂會等場合登台演奏。詳細資訊請洽：黃渝臻系秘。</p>
+                    <div class="card-footer"><div class="arrow-btn">➔</div></div>
                 </div>
-            </div>
-
+            </a>
+            
         </div>
     </section>
 
