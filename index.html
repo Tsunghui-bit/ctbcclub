@@ -175,19 +175,20 @@
         /* --- 升級版：卡片底部資訊列 --- */
         .card-footer {
             display: flex;
-            justify-content: space-between; /* 讓文字靠左，箭頭靠右 */
+            justify-content: flex-end; /* 讓內容全部向右靠攏 */
+            gap: 12px; /* 設定文字跟箭頭之間的絕佳距離 */
             align-items: center;
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px solid #f2f2f2; /* 加上淡淡的分隔線增加質感 */
         }
         .action-text {
-            font-size: 13px;
+            font-size: 16px;
             font-weight: 500;
             color: var(--primary-green);
         }
         .announcement {
-            font-size: 13px;
+            font-size: 16px;
             font-weight: 500;
             color: #888; /* 公告文字使用低調的灰色 */
         }
@@ -251,6 +252,7 @@
             .banner-words { text-align: left; }
             .banner-text h2 { font-size: 32px; }
             .footer { flex-direction: column; align-items: flex-start; gap: 15px; padding: 30px 20px; }
+            .background-attachment: scroll; /* 關閉固定視差，讓照片完美適應手機螢幕大小，恢復清晰度 */
         }
     </style>
 </head>
