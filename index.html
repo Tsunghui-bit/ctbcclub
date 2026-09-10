@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中金院社團線上指南</title>
+    <title>中信金融管理學院 | 社團懶人包</title>
     
     <style>
-        /* 啟用平滑滾動功能 */
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            margin: 0; padding: 0;
-            background-color: #f9f9f9; color: #333;
+        /* --- 全域與字體設定 --- */
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+
+        :root {
+            --primary-green: #678678; 
+            --dark-green: #2c4436; 
+            --dark-text: #333333;
+            --bg-color: #E3ECF3; /* 質感冷灰背景 */
         }
 
-        /* 第一層：首頁分段浮現動畫 */
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0; padding: 0;
+            background-color: var(--bg-color);
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+
+        /* --- 1. 首頁分段浮現動畫 (復原) --- */
         .intro-screen {
             height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center;
@@ -28,15 +39,12 @@
         }
         .fade-segment {
             opacity: 0; animation: floatUp 1.2s ease-out forwards;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        
-        /* 調整動畫延遲設定 */
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.8s; }
-        
         .scroll-hint {
-            margin-top: 60px; font-size: 18px; letter-spacing: 2px; opacity: 0;
-            /* 配合標題變為兩段，將下滑提示出現的時間提早到 2 秒 */
+            margin-top: 60px; font-size: 14px; letter-spacing: 2px; opacity: 0;
             animation: fadeIn 2s ease-out 2s forwards; 
         }
 
@@ -49,40 +57,52 @@
             100% { opacity: 1; }
         }
 
-        /* 引言區塊 (加入社團的好處) */
+        /* --- 2. 引言區塊 (復原) --- */
         .benefits-section {
-            padding: 100px 20px; background-color: #f8f9f8;
+            padding: 100px 20px; background-color: var(--bg-color);
             display: flex; justify-content: center; text-align: center;
         }
         .benefits-content {
-            max-width: 800px; background-color: #f2f5f3; 
+            max-width: 800px; background-color: #ffffff; 
             padding: 50px 40px; border-radius: 12px; 
-            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
         .benefits-content p {
-            font-size: 20px; line-height: 2.2; color: #4a5f52;
+            font-size: 20px; line-height: 2.2; color: var(--dark-green);
             margin-bottom: 20px; font-weight: 500;
         }
         .benefits-content p:last-child { margin-bottom: 0; }
 
-        /* 選單按鈕區塊 */
-        .menu-section {
-            padding: 80px 20px 100px; background-color: #f8f9f8;
-            display: flex; flex-direction: column; align-items: center;
+        /* --- 3. 黏性導覽列 --- */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        .menu-section h2 { color: #4a5f52; font-size: 32px; margin-bottom: 40px; letter-spacing: 1.5px; }
-        .nav-buttons { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 900px; }
-        .nav-buttons a {
-            text-decoration: none; color: #5c7465; padding: 15px 35px;
-            border-radius: 8px; border: 2px solid #5c7465; 
-            font-weight: bold; font-size: 20px; transition: all 0.3s ease; background-color: transparent;
+        .logo-area {
+            font-weight: 700;
+            color: var(--dark-green);
         }
-        .nav-buttons a:hover { background-color: #5c7465; color: white; transform: scale(1.05); }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            margin-left: 30px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary-green); }
 
-
-        /* --- 3. 社團方格卡片區塊 --- */
+        /* --- 4. 社團方格卡片區塊 --- */
         .clubs-section {
-            padding: 80px 5%;
+            padding: 20px 5% 80px 5%;
             background-color: var(--bg-color); 
         }
         .section-header {
@@ -95,11 +115,6 @@
             margin: 0 0 10px 0;
             letter-spacing: 2px;
         }
-        .section-header p {
-            color: #666;
-            margin: 0;
-            font-size: 16px;
-        }
         
         .club-grid {
             display: grid;
@@ -109,20 +124,18 @@
             margin: 0 auto;
         }
 
-        /* 單張方格卡片設計 */
         .club-card {
             background-color: #ffffff;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none; /* 移除超連結底線 */
+            text-decoration: none; 
             color: var(--dark-text);
             display: flex;
             flex-direction: column;
         }
         
-        /* 針對有連結的卡片增加滑鼠手勢 */
         a.club-card { cursor: pointer; }
         
         .club-card:hover {
@@ -134,7 +147,7 @@
             background-color: #e0e5e3; 
             background-size: cover;
             background-position: center;
-            image-rendering: crisp-edges; /* 優化照片清晰度 */
+            image-rendering: crisp-edges;
         }
         .card-content {
             padding: 24px;
@@ -155,25 +168,25 @@
             flex-grow: 1;
         }
         
-        /* --- 升級版：卡片底部資訊列 --- */
+        /* 你修改成功的卡片底部設計 */
         .card-footer {
             display: flex;
-            justify-content: flex-end; /* 讓內容全部向右靠攏 */
-            gap: 12px; /* 設定文字跟箭頭之間的絕佳距離 */
+            justify-content: flex-end; /* 全部靠右對齊 */
+            gap: 12px; /* 箭頭與文字的絕佳距離 */
             align-items: center;
             margin-top: 15px;
             padding-top: 15px;
-            border-top: 1px solid #f2f2f2; /* 加上淡淡的分隔線增加質感 */
+            border-top: 1px solid #f2f2f2; 
         }
         .action-text {
-            font-size: 16px;
+            font-size: 16px; /* 放大的 16px */
             font-weight: 500;
             color: var(--primary-green);
         }
         .announcement {
-            font-size: 16px;
+            font-size: 16px; /* 放大的 16px */
             font-weight: 500;
-            color: #888; /* 公告文字使用低調的灰色 */
+            color: #888; 
         }
         .arrow-btn {
             width: 32px; height: 32px;
@@ -188,7 +201,6 @@
             transition: all 0.3s ease;
         }
         
-        /* 滑鼠懸停時，箭頭變色並向右上微移，增強 45 度角的動態感 */
         a.club-card:hover .arrow-btn {
             background-color: var(--primary-green);
             color: white;
@@ -196,7 +208,7 @@
             transform: translate(2px, -2px);
         }
 
-        /* --- 4. 底部形象橫幅與 Footer --- */
+        /* --- 5. 底部形象橫幅與 Footer --- */
         .bottom-banner {
             background-color: var(--primary-green);
             color: white;
@@ -229,26 +241,35 @@
         @media (max-width: 768px) {
             .navbar { padding: 15px 20px; }
             .nav-links { display: none; }
-            .hero { flex-direction: column; min-height: auto; }
-            .hero-title { font-size: 42px; }
             .bottom-banner { flex-direction: column; align-items: flex-start; text-align: left; gap: 40px; padding: 50px 20px; }
             .banner-words { text-align: left; }
             .banner-text h2 { font-size: 32px; }
             .footer { flex-direction: column; align-items: flex-start; gap: 15px; padding: 30px 20px; }
-            .background-attachment: scroll; /* 關閉固定視差，讓照片完美適應手機螢幕大小，恢復清晰度 */
+            .benefits-content p { font-size: 18px; } /* 手機版引言稍微縮小以利閱讀 */
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. 滿版滾動式首頁 -->
-    <header class="hero-section">
-        <h1 class="hero-title">社團懶人包</h1>
-        <p class="hero-subtitle">在中信金融管理學院，找到不一樣的自己。</p>
-        <div class="scroll-down">▼ 往下滑動探索社團 ▼</div>
-    </header>
+    <!-- 1. 復原：首頁分段浮現動畫 -->
+    <div class="intro-screen">
+        <div class="intro-text-container">
+            <div class="fade-segment delay-1">中信金融管理學院</div>
+            <div class="fade-segment delay-2">線上社團指南</div>
+        </div>
+        <div class="scroll-hint">▼ 往下滑動探索社團 ▼</div>
+    </div>
 
-    <!-- 2. 黏性導覽列 -->
+    <!-- 2. 復原：社團引言區塊 -->
+    <div class="benefits-section">
+        <div class="benefits-content">
+            <p>大學生活除了上課，當然也要找到自己的圈子✨</p>
+            <p>想打球、玩音樂、認識新朋友，或是培養新的興趣，都可以先從社團開始！</p>
+            <p>學校各社團的 IG 都幫大家整理好了，可以直接點進去看看各社團平常的活動、費用資訊與最新動態～有相關問題也歡迎私訊IG詢問!<br>還不知道要加哪個社團也沒關係，那就先每個都參加看看😎<br>說不定你的大學生活，就從其中一個社團開始！</p>
+        </div>
+    </div>
+
+    <!-- 3. 黏性導覽列 -->
     <nav class="navbar" id="club-list">
         <div class="logo-area">
             中信金融管理學院<br><span style="font-size: 10px; font-weight:400;">CTBC BUSINESS SCHOOL</span>
@@ -258,16 +279,14 @@
         </div>
     </nav>
 
-    <!-- 3. 社團方格卡片區塊 -->
+    <!-- 4. 社團方格卡片區塊 -->
     <section class="clubs-section">
         <div class="section-header">
-            <h2>社團介紹</h2>
-            <p>從興趣出發，遇見志同道合的夥伴，讓大學生活不只讀書，更精彩！</p>
+            <h2>探索社團</h2>
         </div>
 
         <div class="club-grid">
             
-            <!-- 吉他社 -->
             <a href="https://www.instagram.com/ctbc_guitarclub?stkn=b2xsbG9nNG1vc3U=" target="_blank" class="club-card">
                 <div class="card-img" style="background-image: url('guitar.jpg');"></div>
                 <div class="card-content">
@@ -280,7 +299,6 @@
                 </div>
             </a>
 
-            <!-- 熱舞社 -->
             <a href="https://www.instagram.com/ctbc.dance.club?igsh=eDE0ZThnc3lraGk=" target="_blank" class="club-card">
                 <div class="card-img" style="background-image: url('dance.jpg');"></div>
                 <div class="card-content">
@@ -293,7 +311,6 @@
                 </div>
             </a>
 
-            <!-- 桌遊社 -->
             <a href="https://www.instagram.com/ctbc_board.games.club?igsh=MmdvOTVwZjA3NGMy" target="_blank" class="club-card">
                 <div class="card-img" style="background-image: url('game.jpg');"></div>
                 <div class="card-content">
@@ -306,7 +323,6 @@
                 </div>
             </a>
 
-            <!-- 棒球社 -->
             <a href="https://www.instagram.com/ctbc_baseball_club?igsh=cnpwdmF1OHozYmN6" target="_blank" class="club-card">
                 <div class="card-img" style="background-image: url('baseball.jpg');"></div>
                 <div class="card-content">
@@ -319,7 +335,6 @@
                 </div>
             </a>
 
-            <!-- 撞球社 -->
             <a href="https://line.me/ti/g/d62dJpaGJ2" target="_blank" class="club-card">
                 <div class="card-img" style="background-image: url('billiards.jpg');"></div>
                 <div class="card-content">
@@ -332,7 +347,6 @@
                 </div>
             </a>
 
-            <!-- 匹克球社 -->
             <a href="https://www.instagram.com/ctbcbs_pickleballclub?igsh=d2J6ODd3YzZjeTNi&utm_source=qr" target="_blank" class="club-card">
                 <div class="card-img" style="background-image: url('Pickleball.jpg');"></div>
                 <div class="card-content">
@@ -345,7 +359,6 @@
                 </div>
             </a>
 
-            <!-- 蔬活玩意社 -->
             <a href="https://www.instagram.com/vefepme_ctbc?igsh=OWVvZW11ZzVlZDhp" target="_blank" class="club-card">
                 <div class="card-img" style="background-image: url('vefepme.jpg');"></div>
                 <div class="card-content">
@@ -358,20 +371,18 @@
                 </div>
             </a>
 
-            <!-- 高爾夫球社 (無連結，使用 div) -->
             <div class="club-card">
                 <div class="card-img" style="background-image: url('golf.jpg');"></div>
                 <div class="card-content">
                     <h3>高爾夫球社</h3>
                     <p>想找一項能讓自己靜下來的運動嗎？高爾夫講究的不只是技巧，更是耐心、專注與節奏。</p>
                     <div class="card-footer">
-                        <span class="announcement">詳細資訊請洽：社長 財金系蘇俊彥</span>
+                        <span class="announcement">詳細課程資訊將於新生大群公告</span>
                         <div class="arrow-btn">↗</div>
                     </div>
                 </div>
             </div>
 
-            <!-- 法律研究暨服務社 -->
             <a href="https://www.instagram.com/lsrs_ctbc?igsh=eG1vNmI1d3I5a2N3&utm_source=qr" target="_blank" class="club-card">
                 <div class="card-img" style="background-image: url('law.jpg');"></div>
                 <div class="card-content">
@@ -384,7 +395,6 @@
                 </div>
             </a>
 
-            <!-- 親善大使暨表演社 (無連結，使用 div) -->
             <div class="club-card">
                 <div class="card-img" style="background-image: url('goodwill.jpg');"></div>
                 <div class="card-content">
@@ -397,7 +407,6 @@
                 </div>
             </div>
 
-            <!-- 攝影社 (無連結，使用 div) -->
             <div class="club-card">
                 <div class="card-img" style="background-image: url('camera.jpg');"></div>
                 <div class="card-content">
@@ -410,7 +419,6 @@
                 </div>
             </div>
 
-            <!-- 運動傷害防護與體能訓練社 -->
             <a href="https://www.instagram.com/ctbc_scat_team?stkn=eG1vM3Z3NmN0emhq" target="_blank" class="club-card">
                 <div class="card-img" style="background-image: url('sport.jpg');"></div>
                 <div class="card-content">
@@ -423,7 +431,6 @@
                 </div>
             </a>
 
-            <!-- 羽球社 (無連結，使用 div) -->
             <div class="club-card">
                 <div class="card-img" style="background-image: url('badminton.jpg');"></div>
                 <div class="card-content">
@@ -436,7 +443,6 @@
                 </div>
             </div>
 
-            <!-- 男子籃球隊一般組 -->
             <a href="https://www.instagram.com/ctbcbs_basketball?stkn=dDN2OWx5cjF1aWtt" target="_blank" class="club-card">
                 <div class="card-img" style="background-image: url('basketball.jpg');"></div>
                 <div class="card-content">
@@ -449,7 +455,6 @@
                 </div>
             </a>
 
-            <!-- 女子排球隊 -->
             <a href="https://www.instagram.com/ctbc_volleyball_?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" class="club-card">
                 <div class="card-img" style="background-image: url('volleyball.jpg');"></div>
                 <div class="card-content">
@@ -462,7 +467,6 @@
                 </div>
             </a>
 
-            <!-- 木球社 (無連結，使用 div) -->
             <div class="club-card">
                 <div class="card-img" style="background-image: url('woodball.jpg');"></div>
                 <div class="card-content">
@@ -475,7 +479,6 @@
                 </div>
             </div>
 
-            <!-- 女子足球隊 -->
             <a href="https://www.instagram.com/ctbc_football?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" class="club-card">
                 <div class="card-img" style="background-image: url('football.jpg');"></div>
                 <div class="card-content">
@@ -488,7 +491,6 @@
                 </div>
             </a>
 
-            <!-- 跆拳道隊 -->
             <a href="https://www.instagram.com/ctbcbs.tkd?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" class="club-card">
                 <div class="card-img" style="background-image: url('TKD.jpg');"></div>
                 <div class="card-content">
@@ -501,7 +503,6 @@
                 </div>
             </a>
 
-            <!-- 愛樂社 (無連結，使用 div) -->
             <div class="club-card">
                 <div class="card-img" style="background-image: url('band.jpg');"></div>
                 <div class="card-content">
@@ -517,7 +518,7 @@
         </div>
     </section>
 
-    <!-- 4. 底部頁尾 -->
+    <!-- 5. 底部橫幅與頁尾 -->
     <div class="bottom-banner">
         <div class="banner-text">
             <h2>社團，<br>讓大學更完整。</h2>
