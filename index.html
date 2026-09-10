@@ -13,7 +13,7 @@
             --primary-green: #678678; 
             --dark-green: #2c4436; 
             --dark-text: #333333;
-            --bg-color: #E3ECF3; /* 質感冷灰背景 */
+            --bg-color: #e8ede9;  /* 將原本的冷灰藍改為柔和的莫蘭迪淺綠底色 *
         }
 
         html { scroll-behavior: smooth; }
@@ -29,7 +29,8 @@
         .intro-screen {
             height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center;
-            background: linear-gradient(to bottom, #748c7e 0%, #a8baa6 100%);
+            /* 調整為流暢且富有質感的莫蘭迪綠漸層，並在底部自然過渡到新底色 */
+            background: linear-gradient(135deg, #748c7e 0%, #8ca193 60%, #e8ede9 100%); 
             color: white; text-align: center; padding: 20px; box-sizing: border-box;
         }
         .intro-text-container {
